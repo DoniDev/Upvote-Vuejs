@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upvote</title>
+    <!--  Stylesheets  -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+    <link rel="stylesheet"
+          href="../public/styles.css" />
+</head>
+<body>
+
+<!-- Out vue application will be mounted inside the element with the id of "app"   -->
+    <div id="app">
+        <h2 class="title has-text-centered dividing-header">UpVote!</h2>
+        <div class="section">
+            <article class="media" :class="{'blue-border': submission.votes >= 20}" v-for="submission in sortedSubmissions" :key="submission.id">
+                <figure class="media-left">
+                    <img class="image is-64x64"
+                         :src="submission.submissionImage">
+                </figure>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>
+                                <a :href="submission.url" class="has-text-info">{{ submission.title }}</a>
+                                <span class="tag is-small">#{{ submission.id }}</span>
+                            </strong>
+                            <br>
+                            {{ submission.description }}
+                            <br>
+                            <small class="is-size-7">
+                                Submitted by:
+                                <img class="image is-24x24"
+                                     :src="submission.avatar">
+                            </small>
+                        </p>
+                    </div>
+                </div>
+                <div class="media-right">
+                        <span @click="upvote(submission.id)" class="icon is-small">
+                            <i class="fa fa-chevron-up"></i>
+                            <strong class="has-text-info">{{ submission.votes }}</strong>
+                        </span>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!--  Vue  -->
+    <script src="https://unpkg.com/vue"></script>
+
+    <!--  Js files  -->
+    <script src="seed.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
